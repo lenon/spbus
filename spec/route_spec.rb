@@ -28,5 +28,21 @@ describe SpBus::Route do
       expect(subject.destination).to eql("TERM. BANDEIRA")
     end
   end
+
+  describe "#to_h", :vcr do
+
+    subject { described_class.new("6450-10") }
+    before { subject.fetch_details }
+
+    it "returns a hash" do
+      expect(subject.to_h).to eql({
+        number: "6450-10",
+        origin: "TERM. CAPELINHA",
+        destination: "TERM. BANDEIRA",
+        code_for_origin: 59,
+        code_for_destination: 32827
+      })
+    end
+  end
 end
 

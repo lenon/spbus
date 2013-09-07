@@ -25,6 +25,16 @@ module SpBus
       true
     end
 
+    def to_h
+      {
+        number: number,
+        origin: origin,
+        destination: destination,
+        code_for_origin: code_for_origin,
+        code_for_destination: code_for_destination
+      }
+    end
+
     private
 
     def sptrans_request
