@@ -1,0 +1,34 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://200.189.189.54/InternetServices/PosicaoLinha?codigoLinha=59
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '101'
+      Content-Type:
+      - application/json; charset=utf-8
+      Server:
+      - Microsoft-HTTPAPI/2.0
+      Date:
+      - Sun, 08 Sep 2013 02:41:33 GMT
+    body:
+      encoding: UTF-8
+      string: '{"PosicaoLinhaResult":{"hr":"23:41","vs":[{"a":true,"p":"72420","px":-46.735629,"py":-23.64352625}]}}'
+    http_version: 
+  recorded_at: Sun, 08 Sep 2013 02:41:33 GMT
+recorded_with: VCR 2.5.0
