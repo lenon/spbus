@@ -1,7 +1,6 @@
-require "ostruct"
-
 module SpBus
-  class Bus < OpenStruct
+  class Bus
+    attr_accessor :latitude, :longitude, :route
   end
 end
 

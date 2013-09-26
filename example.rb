@@ -1,25 +1,21 @@
 require "spbus"
+require "pry"
 
-crawler = SpBus::Crawler.new
-crawler.fetch_routes
+puts "Fetching all routes..."
 
-puts "Found #{crawler.routes.size} routes"
+routes = SpBus.fetch_routes
 
-crawler.routes.each do |route|
-  puts "Fetching details for route #{route.number}"
+puts "Found #{routes.size} routes"
 
-  begin
-    route.fetch_details
-
-    puts <<-EOF
-    Origin: #{route.origin}
-    Destination: #{route.destination}
-    Code for origin: #{route.code_for_origin}
-    Code for destination: #{route.code_for_destination}
-    EOF
-
-  rescue SpBus::InconsistentResponse
-    puts "Can't fetch details for #{route.number}"
-  end
+routes.each do |route|
+  puts <<-EOF
+  Number:         #{route.number}
+  Origin:         #{route.origin}
+  Destination:    #{route.destination}
+  One way?:       #{route.one_way?}
+  Origin id:      #{route.origin_id}
+  Destination id: #{route.destination_id}
+  --------------------------------------------------
+  EOF
 end
 
