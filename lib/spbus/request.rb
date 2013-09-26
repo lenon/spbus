@@ -1,6 +1,5 @@
 module SpBus
   class Request
-    class HTTPError < OpenURI::HTTPError ; end
 
     AUTH_URL = "http://olhovivo.sptrans.com.br/"
 
