@@ -11,10 +11,6 @@ module SpBus
     def one_way?
       !!@one_way
     end
-
-    def fetch_details
-      Scrapers::RouteDetails.new(self).fetch
-    end
   end
 end
 

@@ -10,16 +10,32 @@ describe SpBus do
     let(:route2) { SpBus::Route.new("6450-10") }
     let(:scraper) { double.as_null_object }
 
-    it "fetch route details for every route" do
+    before do
       allow_any_instance_of(SpBus::Scrapers::Routes).to receive(:fetch)
-      allow_any_instance_of(SpBus::Scrapers::Routes).to receive(:routes).and_return([route1, route2])
+      allow_any_instance_of(SpBus::Scrapers::Routes).to receive(:routes)
+        .and_return([route1, route2])
+    end
 
-      expect(SpBus::Scrapers::RouteDetails).to receive(:new).with(route1).and_return(scraper)
-      expect(SpBus::Scrapers::RouteDetails).to receive(:new).with(route2).and_return(scraper)
+    it "fetch route details for every route" do
+      expect(SpBus::Scrapers::RouteDetails).to receive(:new).with(route1)
+        .and_return(scraper)
+
+      expect(SpBus::Scrapers::RouteDetails).to receive(:new).with(route2)
+        .and_return(scraper)
 
       expect(scraper).to receive(:fetch).twice
 
       expect(subject.fetch_routes).to eql([route1, route2])
+    end
+
+    it "does not return an invalid route" do
+      allow(SpBus::Scrapers::RouteDetails).to receive(:new)
+        .with(anything).and_return(scraper)
+
+      expect(scraper).to receive(:fetch).ordered.and_raise(SpBus::InvalidRoute)
+      expect(scraper).to receive(:fetch).ordered
+
+      expect(subject.fetch_routes).to eql([route2])
     end
   end
 

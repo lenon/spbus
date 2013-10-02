@@ -1,6 +1,8 @@
 require "spbus"
 require "vcr"
 
+SpBus.logger = Logger.new("/dev/null")
+
 VCR.configure do |c|
   c.cassette_library_dir = "spec/cassettes"
   c.hook_into :webmock
