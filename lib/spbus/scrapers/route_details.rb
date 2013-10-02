@@ -15,6 +15,12 @@ module SpBus::Scrapers
       build_route
 
       true
+    rescue OpenURI::HTTPError => e
+      if e.io && e.io.status.first.to_i == 500
+        raise SpBus::InvalidRoute
+      else
+        raise e
+      end
     end
 
     private

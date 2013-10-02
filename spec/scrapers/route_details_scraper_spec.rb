@@ -13,7 +13,7 @@ describe SpBus::Scrapers::RouteDetails do
       it "raises an error" do
         expect {
           subject.fetch
-        }.to raise_error
+        }.to raise_error(SpBus::InvalidRoute)
       end
     end
 
