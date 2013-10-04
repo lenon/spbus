@@ -11,8 +11,12 @@ module SpBus
     end
 
     def get
+      tries ||= 3
       get_cookies if @authenticated
       open(@url, request_headers).read
+    rescue Errno::ETIMEDOUT => e
+      raise e if (tries -= 1) == 0
+      retry
     end
 
     private
