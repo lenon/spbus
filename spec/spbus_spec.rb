@@ -37,6 +37,12 @@ describe SpBus do
 
       expect(subject.fetch_routes).to eql([route2])
     end
+
+    it "yields a block" do
+      allow_any_instance_of(SpBus::Scrapers::RouteDetails).to receive(:fetch)
+
+      expect { |b| subject.fetch_routes(&b) }.to yield_successive_args(route1, route2)
+    end
   end
 
   describe ".fetch_buses" do

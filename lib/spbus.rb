@@ -34,7 +34,11 @@ module SpBus
 
         begin
           Scrapers::RouteDetails.new(route).fetch
-          true
+          if block_given?
+            yield route
+          else
+            true
+          end
         rescue InvalidRoute
           logger.warn "[INVALID ROUTE] #{route.number}"
           false
