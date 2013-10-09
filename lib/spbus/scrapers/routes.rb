@@ -26,8 +26,6 @@ module SpBus::Scrapers
 
     def make_request
       request = SpBus::Request.new(ALL_ROUTES_URL)
-      request.authenticated = false
-
       @doc = Nokogiri::HTML(request.get)
     end
 
