@@ -17,6 +17,7 @@ module SpBus
 
     def request_headers
       headers = {}
+      headers["User-Agent"] = "SpBus/#{SpBus::VERSION}"
       headers
     end
   end
