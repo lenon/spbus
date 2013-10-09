@@ -1,7 +1,7 @@
 module SpBus::Scrapers
   class Locations
 
-    URL = "http://olhovivo.sptrans.com.br/v0/Posicao"
+    URL = "http://200.189.189.54/InternetServices/PosicaoLinha"
 
     attr_reader :buses
 
@@ -11,7 +11,7 @@ module SpBus::Scrapers
 
     def fetch
       doc = SpBus::Request.new(url_with_params).get
-      @json = JSON.parse(doc, symbolize_names: true)
+      @json = JSON.parse(doc, symbolize_names: true)[:PosicaoLinhaResult]
 
       validate_response
 
