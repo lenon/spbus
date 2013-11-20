@@ -1,7 +1,7 @@
 module SpBus::Scrapers
   class RouteDetails
 
-    URL = "http://200.189.189.54/InternetServices/BuscaLinhasSIM"
+    URL = "http://olhovivo.sptrans.com.br/v0/Linha/Buscar"
 
     def initialize(route)
       @route = route
@@ -9,7 +9,7 @@ module SpBus::Scrapers
 
     def fetch
       doc = SpBus::Request.new(url_with_params).get
-      @json = JSON.parse(doc, symbolize_names: true)[:BuscaLinhasSIMResult]
+      @json = JSON.parse(doc, symbolize_names: true)
 
       validate_response
       build_route
@@ -35,7 +35,7 @@ module SpBus::Scrapers
          @json.size != 2 ||
          @json[0][:DenominacaoTSTP] != @json[1][:DenominacaoTSTP] ||
          @json[0][:DenominacaoTPTS] != @json[1][:DenominacaoTPTS]
-        raise SpBus::InvalidRoute
+        raise SpBus::UnknownResponse
       end
     end
 
