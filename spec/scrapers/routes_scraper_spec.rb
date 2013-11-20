@@ -7,7 +7,7 @@ describe SpBus::Scrapers::Routes do
     before { subject.fetch }
 
     it "returns all bus routes" do
-      expect(subject.routes).to have(1305).items
+      expect(subject.routes).to have(1315).items
     end
 
     it "returns a Route object for every found route" do
