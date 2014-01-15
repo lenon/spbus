@@ -1,12 +1,16 @@
 module SpBus
   class Line < Hashie::Trash
-    property :id,                    :from => :CodigoLinha
-    property :one_way,               :from => :Circular
-    property :number,                :from => :Letreiro
-    property :direction,             :from => :Sentido
-    property :kind,                  :from => :Tipo
-    property :sign_for_start_to_end, :from => :DenominacaoTPTS
-    property :sign_for_end_to_start, :from => :DenominacaoTSTP
-    property :info,                  :from => :Informacoes
+    property :id,               :from => :CodigoLinha
+    property :one_way,          :from => :Circular
+    property :number,           :from => :Letreiro
+    property :direction,        :from => :Sentido
+    property :kind,             :from => :Tipo
+    property :destination_sign, :from => :DenominacaoTPTS
+    property :origin_sign,      :from => :DenominacaoTSTP
+    property :info,             :from => :Informacoes
+
+    def sign
+      direction == 1 ? destination_sign : origin_sign
+    end
   end
 end
