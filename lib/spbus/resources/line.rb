@@ -12,5 +12,9 @@ module SpBus
     def sign
       direction == 1 ? destination_sign : origin_sign
     end
+
+    def trip_id
+      "#{number}-#{kind}-#{direction - 1}"
+    end
   end
 end

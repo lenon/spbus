@@ -25,4 +25,16 @@ describe SpBus::Line do
       end
     end
   end
+
+  describe "#trip_id" do
+    before do
+      allow(subject).to receive(:number) { "6450" }
+      allow(subject).to receive(:kind) { "10" }
+      allow(subject).to receive(:direction) { 2 }
+    end
+
+    it "returns the trip id" do
+      expect(subject.trip_id).to eql("6450-10-1")
+    end
+  end
 end
