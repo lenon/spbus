@@ -2,13 +2,16 @@ require "spec_helper"
 
 describe SpBus::LineStops do
 
+  let(:line) { SpecEnv.known_line }
   let(:connection) { authorized_connection }
-  subject { described_class.new(connection, sptrans_known_line) }
+
+  subject { described_class.new(connection, line) }
 
   describe "#results" do
 
-    context "empty results" do
-      subject { described_class.new(connection, sptrans_unknown_line) }
+    context "with no results" do
+
+      let(:line) { SpecEnv.unknown_line }
 
       it "returns an empty array" do
         use_cassette(:empty_line_stops_results) do
@@ -17,7 +20,7 @@ describe SpBus::LineStops do
       end
     end
 
-    context "found results" do
+    context "with some results" do
       it "returns an array of Stops" do
         use_cassette(:line_stops_results) do
           results = subject.results
