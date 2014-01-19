@@ -2,13 +2,16 @@ require "spec_helper"
 
 describe SpBus::Search do
 
+  let(:query) { SpecEnv.known_search }
   let(:connection) { authorized_connection }
-  subject { described_class.new(connection, sptrans_known_search) }
+
+  subject { described_class.new(connection, query) }
 
   describe "#results" do
 
-    context "empty results" do
-      subject { described_class.new(connection, sptrans_unknown_search) }
+    context "with no results" do
+
+      let(:query) { SpecEnv.unknown_search }
 
       it "returns an empty array" do
         use_cassette(:empty_search_results) do
@@ -17,7 +20,7 @@ describe SpBus::Search do
       end
     end
 
-    context "found results" do
+    context "with some results" do
       it "returns an array of Lines" do
         use_cassette(:search_results) do
           results = subject.results
