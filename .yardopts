@@ -1,0 +1,8 @@
+--exclude lib/spbus/authentication.rb
+--exclude lib/spbus/connection.rb
+--exclude lib/spbus/line_buses.rb
+--exclude lib/spbus/line_stops.rb
+--exclude lib/spbus/search.rb
+-
+LICENSE.txt
+README.md

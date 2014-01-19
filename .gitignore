@@ -3,4 +3,5 @@
 Gemfile.lock
 coverage
 doc/
+.yardoc/
 pkg
