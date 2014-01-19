@@ -2,12 +2,14 @@ require "spec_helper"
 
 describe SpBus::Authentication do
 
+  let(:token) { SpecEnv.valid_api_token }
   let(:connection) { SpBus::Connection.new }
-  subject { described_class.new(connection, sptrans_token) }
+
+  subject { described_class.new(connection, token) }
 
   describe "#authorize" do
 
-    context "token is valid" do
+    context "when API token is valid" do
       it "returns true" do
         use_cassette(:successful_authentication) do
           expect(subject.authorize).to be true
@@ -15,8 +17,9 @@ describe SpBus::Authentication do
       end
     end
 
-    context "token is invalid" do
-      subject { described_class.new(connection, sptrans_invalid_token) }
+    context "when API token is not valid" do
+
+      let(:token) { SpecEnv.invalid_api_token }
 
       it "raises an error" do
         use_cassette(:unsuccessful_authentication) do
