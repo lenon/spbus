@@ -22,6 +22,13 @@ module SpBus
   class << self
     attr_writer :endpoint
 
+    # Returns the API base url.
+    #
+    # @example
+    #   SpBus.endpoint #=> "http://api.olhovivo.sptrans.com.br/v0/"
+    #   SpBus.endpoint = "http://myproxyapi.com/"
+    #
+    # @return [String]
     def endpoint
       @endpoint ||= "http://api.olhovivo.sptrans.com.br/v0/"
     end
