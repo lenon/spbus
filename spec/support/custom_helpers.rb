@@ -7,7 +7,7 @@ module CustomHelpers
   def authorized_connection
     connection = SpBus::Connection.new
     use_cassette(:successful_authentication) do
-      SpBus::Authentication.new(connection, sptrans_token).authorize
+      SpBus::Authentication.new(connection, SpecEnv.valid_api_token).authorize
     end
     connection
   end
