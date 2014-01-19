@@ -11,4 +11,8 @@ module CustomHelpers
     end
     connection
   end
+
+  def regexp_matcher(regexp)
+    RSpec::Mocks::ArgumentMatchers::RegexpMatcher.new(regexp)
+  end
 end
