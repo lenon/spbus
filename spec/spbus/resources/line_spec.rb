@@ -3,10 +3,10 @@ require "spec_helper"
 describe SpBus::Line do
 
   describe "#sign" do
-    before do
-      allow(subject).to receive(:destination_sign) { "destino" }
-      allow(subject).to receive(:origin_sign) { "origem" }
-      allow(subject).to receive(:direction) { direction }
+    subject do
+      described_class.new(:DenominacaoTPTS => "destino",
+                          :DenominacaoTSTP => "origem",
+                          :Sentido         => direction)
     end
 
     context "line is going from origin to destination" do
@@ -27,10 +27,10 @@ describe SpBus::Line do
   end
 
   describe "#trip_id" do
-    before do
-      allow(subject).to receive(:number) { "6450" }
-      allow(subject).to receive(:kind) { "10" }
-      allow(subject).to receive(:direction) { 2 }
+    subject do
+      described_class.new(:Letreiro => "6450",
+                          :Tipo     => "10",
+                          :Sentido  => 2)
     end
 
     it "returns the trip id" do
