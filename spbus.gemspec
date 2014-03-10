@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.email         = ["lenon.marcel@gmail.com"]
   spec.summary       = "Ruby client for the SPTrans (São Paulo Transporte) API."
   spec.description   = <<-DESC
-    A small Ruby client for SPTrans API which allows you retrieve information
-    about São Paulo city buses, lines, stops and real time schedules.
+    A small Ruby client for SPTrans API which allows you to retrieve data
+    about São Paulo city buses, lines, stops and real-time (GPS) information.
   DESC
   spec.homepage      = "https://github.com/lenon/spbus"
   spec.license       = "MIT"
