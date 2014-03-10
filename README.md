@@ -1,11 +1,11 @@
 # SpBus
 
-A small Ruby client for SPTrans API which allows you retrieve information
-about São Paulo city buses, lines, stops and real time schedules.
+A small Ruby client for [SPTrans API][1] which allows you to retrieve data
+about São Paulo city buses, lines, stops and real-time (GPS) information.
 
-[![Code Climate](https://codeclimate.com/github/lenon/spbus.png)](https://codeclimate.com/github/lenon/spbus)
-[![Gem Version](https://badge.fury.io/rb/spbus.png)](http://badge.fury.io/rb/spbus)
-[![Build Status](https://travis-ci.org/lenon/spbus.png)](https://travis-ci.org/lenon/spbus)
+[![Code Climate](https://codeclimate.com/github/lenon/spbus.png)][2]
+[![Gem Version](https://badge.fury.io/rb/spbus.png)][3]
+[![Build Status](https://travis-ci.org/lenon/spbus.png)][4]
 
 ## Installation
 
@@ -23,13 +23,14 @@ Or install it yourself as:
 
 ## Usage
 
-First of all, get your API token from [SPTrans](http://www.sptrans.com.br/desenvolvedores/). Then you can play with the client:
+First of all, get your API token at [SPTrans developers][1] page.
+Then you can play with the client:
 
-    client = SpBus::Client.new("your api token")
+    client = SpBus::Client.new("your api token goes here")
 
 #### Authentication
 
-All API requests are authenticated. So, let's authenticate:
+Before do any request, client must be authenticated. So, let's authenticate:
 
     client.authenticate #=> true
 
@@ -41,7 +42,7 @@ All API requests are authenticated. So, let's authenticate:
 
     client.stops(line.id) #=> [#<SpBus::Stop ...>, #<SpBus::Stop ...>, ...]
 
-#### Real-time
+#### Real-time (GPS)
 
     client.buses(line.id) #=> [#<SpBus::Bus ...>, #<SpBus::Bus ...>, ...]
 
@@ -57,3 +58,8 @@ All API requests are authenticated. So, let's authenticate:
 
 * Improve documentation.
 * Support more endpoints (like estimated time of arrival and bus lanes).
+
+[1]: http://www.sptrans.com.br/desenvolvedores
+[2]: https://codeclimate.com/github/lenon/spbus
+[3]: http://badge.fury.io/rb/spbus
+[4]: https://travis-ci.org/lenon/spbus
